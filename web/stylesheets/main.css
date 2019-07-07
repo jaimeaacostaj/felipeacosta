@@ -1,0 +1,16 @@
+
+
+
+@media (min-width: 576px) {
+  .ceiling {
+    background-image: url(../images/ceiling.jpg);
+    height:"250";
+  }
+  .drywall {
+    background-image: url(../images/drywall.jpg);
+    height:"250";
+  }
+}
+
+
+

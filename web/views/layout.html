@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include 'header.html' %}
+</head>
+
+<body>
+  <div id="app">
+  {% include 'nav.html' %}
+  {% include 'home.html' %}
+  {% include 'drywall.html' %}
+  {% include 'laminate.html' %}
+  {% include 'acoustic.html' %}
+  {% include 'reviews.html' %}
+  {% include 'contact.html' %}
+
+  {% include 'content.html' %}
+
+ 
+  
+  {% include 'footer.html' %}
+  
+
+  </div>
+
+  <script>
+    const UserSettingsNav = {
+	    template: "#nav-template"
+    }
+const UserSettings = {
+	template: `
+<div class="">
+  
+  <UserSettingsNav/>
+  <router-view class =""/>
+  <router-view name="helper" class=""/>
+</div>
+  `,
+  components: { UserSettingsNav }
+}
+
+const HOME = {
+	template: "#home-template",
+  data() {
+      return {
+        slide: 0,
+        slide1: 0,
+        sliding: null
+      }
+    },
+    methods: {
+      onSlideStart(slide) {
+        this.sliding = true
+      },
+      onSlideEnd(slide) {
+        this.sliding = false
+      },
+      onSlideStart1(slide) {
+        this.sliding = true
+      },
+      onSlideEnd1(slide) {
+        this.sliding = false
+      }
+    }
+}
+
+const DRYWALL = {
+	template: "#drywall-template"
+}
+
+const LAMINATE = {
+	template: "#laminate-template"
+}
+
+const ACOUSTIC = {
+	template: "#acoustic-template",
+  data() {
+      return {
+       
+        slide1: 0,
+        sliding: null
+      }
+    },
+    methods: {
+   
+      onSlideStart1(slide) {
+        this.sliding = true
+      },
+      onSlideEnd1(slide) {
+        this.sliding = false
+      }
+    }
+}
+
+const REVIEWS = {
+	template: "#reviews-template",
+  data() {
+      return {
+       
+        slide1: 0,
+        sliding: null
+      }
+    },
+    methods: {
+   
+      onSlideStart1(slide) {
+        this.sliding = true
+      },
+      onSlideEnd1(slide) {
+        this.sliding = false
+      }
+    }
+}
+
+const CONTACT = {
+	template: "#contact-template"
+}
+
+const router = new VueRouter({
+  mode: 'history',
+  routes: [
+    { path: '/',
+      // You could also have named views at tho top
+      component: UserSettings,
+      children: [{
+      	path: '',
+        component: HOME
+      }, 
+      {
+      	path: 'drywall',
+        component: DRYWALL
+      }, 
+      {
+      	path: 'laminate',
+        component: LAMINATE
+      }, 
+      {
+      	path: 'acoustic',
+        component: ACOUSTIC
+      }, 
+      {
+      	path: 'reviews',
+        component: REVIEWS
+      }, 
+      {
+      	path: 'contact',
+        component: CONTACT
+      } ]
+    }
+  ]
+})
+
+router.push('/')
+
+window.app = new Vue({
+	router,
+  el: '#app',
+  data: {
+    slide: 0,
+    sliding: null
+  },
+  methods: {
+    onSlideStart: function(slide) {
+      this.sliding = true
+    },
+    onSlideEnd: function(slide) {
+      this.sliding = false
+    }
+  }
+})
+
+    </script>
+  
+</body>
+</html>
